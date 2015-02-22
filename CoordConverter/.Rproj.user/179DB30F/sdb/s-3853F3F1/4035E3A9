@@ -1,0 +1,16 @@
+{
+    "contents" : "# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyServer(function(input, output) {\n    \n    #Convert input coordinate to output coordinate depending upon coordType\n    coordConvert <- function(iCoord, coordType){\n        #Convert DDDMMSS to DD\n        if (coordType == \"1\") {\n            #iCoord <- as.character(iCoord)\n            degs <- as.numeric(substr(iCoord,1,3))\n            mins <- as.numeric(substr(iCoord,4,5))\n            secs <- as.numeric(substr(iCoord,6,7))\n            return (as.character(degs + mins / 60 + secs / 3600))\n        }\n        #Convert DD to DDDMMSS\n        else {\n            iCoord <- as.numeric(iCoord)\n            degs <- as.character(trunc(iCoord))\n            mins <- as.character((trunc(iCoord * 60)) %% 60)\n            secs <- as.character(round((iCoord * 3600) %% 60,0))\n            #Fix the outputs to fit the DDDMMSS format\n            if (nchar(degs) == 2) {\n                degs <- paste(\"0\",degs,sep=\"\")\n            }\n            else if (nchar(degs) == 1) {\n                degs <- paste(\"00\",degs,sep=\"\")\n            }\n            if (nchar(mins) == 1) {\n                mins <- paste(\"0\",mins,sep=\"\")\n            }\n            if (nchar(secs) == 1) {\n                secs <- paste(\"0\",secs,sep=\"\")\n            }\n            return (paste(degs,mins,secs,sep=\"\"))\n        }\n    }\n\n    #Get the input coordinate\n    #reactive(inCoord <- input$inCoord)\n#     outCoord <- reactive({\n#         inCoord <- input$inCoord\n#         inCoord\n        \n    #})\n    #reactive()\n    #1 = DMS, 2 = DDM, 3 = DD\n    #convertType <- input$outCoordType\n    #Convert to DMS    \n    \n    #output$text1 <- renderText({\"hi\"})\n    output$text1 <- renderText({        \n        coordConvert(input$inCoord, input$radio)})\n})\n",
+    "created" : 1424456623068.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3156578949",
+    "id" : "4035E3A9",
+    "lastKnownWriteTime" : 1424569620,
+    "path" : "D:/Coursera/9_DataProducts/CoordConverter/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

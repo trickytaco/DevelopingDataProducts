@@ -1,0 +1,16 @@
+{
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n\n  # Application title\n  titlePanel(\"Geographic Coordinate Converter\"),\n\n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      h3(\"Input Coordinate for Conversion\"),\n      textInput(\"inCoord\", NULL, \"\"),\n      radioButtons(\"radio\", \"Conversion Type:\",\n                   choices = list(\"DMS to DD\" = \"1\", \"DD to DMS\" = \"2\")),\n      submitButton(\"Convert\"),\n      h5(\"USAGE: Enter a geographic coordinate, in either\n         Degrees-Minutes-Seconds (DDDMMSS format, 0124517 for example) or\n         Decimal Degrees format (DD.DDDDD format, 113.45987 for example).\n         Choose the type of conversion you want to perform with the radio\n         buttons and click the Convert button.  If you enter an invalid\n         format, NA will be returned in the results.  For DDDMMSS format,\n         the leading 0(s) is required if the number of degrees is less\n         than 100.\"),\n      h5(\"NOTE: Currently, this app does not allow the user to enter a\n         hemisphere and assumes Northern or Eastern hemisphere\n         for DDDMMSS coordinates.  Similarly, this app does not allow\n         negative DD coordinates.\")\n    ),\n\n    # Show a plot of the generated distribution\n    mainPanel(\n      h3(\"Output Coordinate\"),\n      textOutput(\"text1\")\n    )\n  )\n))\n",
+    "created" : 1424456622869.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3669141663",
+    "id" : "18400122",
+    "lastKnownWriteTime" : 1424570017,
+    "path" : "D:/Coursera/9_DataProducts/CoordConverter/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -12,7 +12,6 @@ shinyServer(function(input, output) {
     coordConvert <- function(iCoord, coordType){
         #Convert DDDMMSS to DD
         if (coordType == "1") {
-            #iCoord <- as.character(iCoord)
             degs <- as.numeric(substr(iCoord,1,3))
             mins <- as.numeric(substr(iCoord,4,5))
             secs <- as.numeric(substr(iCoord,6,7))
@@ -40,20 +39,7 @@ shinyServer(function(input, output) {
             return (paste(degs,mins,secs,sep=""))
         }
     }
-
-    #Get the input coordinate
-    #reactive(inCoord <- input$inCoord)
-#     outCoord <- reactive({
-#         inCoord <- input$inCoord
-#         inCoord
-        
-    #})
-    #reactive()
-    #1 = DMS, 2 = DDM, 3 = DD
-    #convertType <- input$outCoordType
-    #Convert to DMS    
-    
-    #output$text1 <- renderText({"hi"})
+  
     output$text1 <- renderText({        
         coordConvert(input$inCoord, input$radio)})
 })
